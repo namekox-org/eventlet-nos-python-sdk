@@ -25,7 +25,6 @@ class Urllib3HttpConnection(object):
             kw = {'preload_content': preload_content}
             if timeout:
                 kw['timeout'] = timeout
-
             # in python2 we need to make sure the url and method are not
             # unicode. Otherwise the body will be decoded into unicode too and
             # that will fail.
@@ -33,7 +32,6 @@ class Urllib3HttpConnection(object):
                 url = url.encode('utf-8')
             if not isinstance(method, str):
                 method = method.encode('utf-8')
-
             response = self.pool.urlopen(method, url, body=body, retries=False,
                                          headers=headers, **kw)
         except ReadTimeoutError as e:
